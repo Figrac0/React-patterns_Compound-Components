@@ -1,0 +1,584 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Базовая сцена */
+
+html,
+body {
+    height: 100%;
+}
+
+html {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+        sans-serif;
+}
+
+body {
+    background: radial-gradient(
+        circle at top,
+        #151b3a 0%,
+        #050814 55%,
+        #020310 100%
+    );
+    /* или вообще чистый линейный:
+       background: linear-gradient(145deg, #050814, #020310);
+    */
+    color: #f5f7ff;
+    display: flex;
+    justify-content: center;
+    padding: 3rem 1.5rem;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Лёгкое динамическое свечение фона */
+
+body::before {
+    content: "";
+    position: fixed;
+    width: 40rem;
+    height: 40rem;
+    background: radial-gradient(
+        circle,
+        rgba(124, 166, 255, 0.25),
+        transparent 60%
+    );
+    filter: blur(18px);
+    top: -20rem;
+    right: -10rem;
+    opacity: 0.7;
+    mix-blend-mode: screen;
+    pointer-events: none;
+    animation: glowDrift 18s ease-in-out infinite alternate;
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    width: 36rem;
+    height: 36rem;
+    background: radial-gradient(
+        circle,
+        rgba(255, 157, 249, 0.22),
+        transparent 55%
+    );
+    filter: blur(22px);
+    bottom: -18rem;
+    left: -8rem;
+    opacity: 0.65;
+    mix-blend-mode: screen;
+    pointer-events: none;
+    animation: glowDrift2 22s ease-in-out infinite alternate;
+}
+
+@keyframes glowDrift {
+    0% {
+        transform: translate3d(0, 0, 0) scale(1);
+    }
+    100% {
+        transform: translate3d(-40px, 30px, 0) scale(1.05);
+    }
+}
+
+@keyframes glowDrift2 {
+    0% {
+        transform: translate3d(0, 0, 0) scale(1);
+    }
+    100% {
+        transform: translate3d(40px, -40px, 0) scale(1.08);
+    }
+}
+
+/* Контейнер приложения */
+
+main {
+    width: 100%;
+    max-width: 60rem;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    position: relative;
+    z-index: 1;
+}
+
+/* Заголовки секций */
+
+main > section > h2 {
+    font-size: 1.9rem;
+    letter-spacing: 0.06em;
+    color: #e5ebff;
+    margin-bottom: 1.4rem;
+    text-transform: uppercase;
+    text-shadow: 0 0 20px rgba(91, 158, 255, 0.35),
+        0 0 38px rgba(126, 205, 255, 0.4);
+    position: relative;
+    padding-left: 0.35rem;
+}
+
+main > section > h2::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 55%;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 70%;
+    border-radius: 999px;
+    background: linear-gradient(180deg, #75c2ff, #ffdd88);
+    box-shadow: 0 0 12px rgba(138, 206, 255, 0.9),
+        0 0 22px rgba(255, 223, 160, 0.9);
+}
+
+/* Общий стиль блоков – стекло и объем */
+
+section {
+    position: relative;
+    padding: 1.9rem 1.9rem 2.1rem;
+    border-radius: 1.7rem;
+    background: radial-gradient(
+            circle at 0% 0%,
+            rgba(111, 177, 255, 0.26),
+            transparent 60%
+        ),
+        radial-gradient(
+            circle at 100% 100%,
+            rgba(255, 153, 255, 0.2),
+            transparent 60%
+        ),
+        rgba(7, 10, 24, 0.96);
+    box-shadow: 0 26px 70px rgba(0, 0, 0, 0.95),
+        0 0 0 1px rgba(255, 255, 255, 0.06), 0 0 45px rgba(92, 155, 255, 0.35);
+    backdrop-filter: blur(22px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    overflow: hidden;
+}
+
+section::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+            circle at 20% -20%,
+            rgba(124, 167, 255, 0.3),
+            transparent 55%
+        ),
+        radial-gradient(
+            circle at 120% 20%,
+            rgba(255, 197, 255, 0.18),
+            transparent 60%
+        );
+    opacity: 0.26;
+    pointer-events: none;
+}
+
+/* Аккордеон */
+
+.accordion {
+    position: relative;
+    list-style: none;
+    padding: 0;
+    margin: 0.35rem 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+}
+
+.accordion-item {
+    position: relative;
+    border-radius: 1.1rem;
+    background: radial-gradient(
+            circle at 0% 0%,
+            rgba(116, 185, 255, 0.18),
+            transparent 60%
+        ),
+        radial-gradient(
+            circle at 100% 100%,
+            rgba(225, 122, 255, 0.16),
+            transparent 55%
+        ),
+        #0e1220;
+    box-shadow: 0 18px 48px rgba(0, 0, 0, 0.9),
+        0 0 0 1px rgba(255, 255, 255, 0.04);
+    overflow: hidden;
+    backdrop-filter: blur(16px);
+    transition: transform 0.26s ease, box-shadow 0.26s ease,
+        background 0.26s ease;
+}
+
+.accordion-item::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+        circle at 10% 0%,
+        rgba(147, 200, 255, 0.4),
+        transparent 60%
+    );
+    opacity: 0;
+    mix-blend-mode: screen;
+    pointer-events: none;
+    transition: opacity 0.26s ease;
+}
+
+.accordion-item:hover {
+    transform: translateY(-2px) translateZ(0);
+    box-shadow: 0 24px 64px rgba(0, 0, 0, 1),
+        0 0 0 1px rgba(137, 194, 255, 0.65);
+}
+
+.accordion-item:hover::before {
+    opacity: 0.4;
+}
+
+/* Заголовок аккордеона */
+
+.accordion-item-title {
+    margin: 0;
+    padding: 1.1rem 1.4rem 1.1rem 1.4rem;
+    cursor: pointer;
+    font-size: 1.06rem;
+    color: #dde6ff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    background: linear-gradient(
+        135deg,
+        rgba(30, 39, 82, 0.98),
+        rgba(21, 27, 64, 0.98)
+    );
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    letter-spacing: 0.02em;
+    font-weight: 550;
+}
+
+.accordion-item-title span {
+    display: inline-flex;
+}
+
+/* Индикатор раскрытия */
+
+.accordion-item-title::after {
+    content: "";
+    flex-shrink: 0;
+    width: 26px;
+    height: 26px;
+    border-radius: 999px;
+    border: 1px solid rgba(137, 190, 255, 0.9);
+    box-shadow: 0 0 0 1px rgba(40, 85, 150, 0.6),
+        0 0 12px rgba(135, 191, 255, 0.8);
+    background: radial-gradient(
+            circle at 30% 0%,
+            rgba(255, 255, 255, 0.4),
+            transparent 60%
+        ),
+        radial-gradient(
+            circle at 80% 120%,
+            rgba(122, 194, 255, 0.7),
+            transparent 60%
+        ),
+        #17233d;
+    position: relative;
+    transform-origin: center;
+    transition: transform 0.28s ease, box-shadow 0.28s ease,
+        background 0.28s ease, border-color 0.28s ease;
+}
+
+/* Открытое состояние заголовка */
+
+.accordion-item:has(.accordion-item-content.open) .accordion-item-title {
+    background: radial-gradient(
+            circle at 0% 0%,
+            rgba(124, 179, 255, 0.3),
+            transparent 60%
+        ),
+        linear-gradient(135deg, #283566, #181d3b);
+    color: #ffffff;
+    text-shadow: 0 0 22px rgba(142, 197, 255, 0.7),
+        0 0 40px rgba(166, 209, 255, 0.7);
+}
+
+.accordion-item:has(.accordion-item-content.open) .accordion-item-title::after {
+    transform: scale(1.06);
+    box-shadow: 0 0 0 1px rgba(163, 215, 255, 1),
+        0 0 18px rgba(155, 210, 255, 1), 0 0 45px rgba(140, 202, 255, 0.9);
+    border-color: rgba(195, 231, 255, 1);
+    background: radial-gradient(
+            circle at 25% 0%,
+            rgba(255, 255, 255, 0.6),
+            transparent 60%
+        ),
+        radial-gradient(
+            circle at 90% 110%,
+            rgba(178, 230, 255, 0.9),
+            transparent 60%
+        ),
+        #1b2846;
+}
+
+.accordion-item:has(.accordion-item-content.open)
+    .accordion-item-title::before {
+    transform: translateY(3px) rotate(225deg);
+    border-color: #f5fbff;
+}
+
+/* Контент аккордеона – плавное раскрытие */
+
+.accordion-item-content {
+    background: radial-gradient(
+            circle at 0% 0%,
+            rgba(142, 202, 255, 0.16),
+            transparent 60%
+        ),
+        linear-gradient(145deg, #101524, #151a2a);
+    color: #c8cee2;
+    font-size: 0.98rem;
+    line-height: 1.6;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    padding: 0 1.5rem;
+    transform: translateY(-4px);
+    transition: max-height 0.42s cubic-bezier(0.23, 1, 0.32, 1),
+        opacity 0.3s ease, padding-top 0.3s ease, padding-bottom 0.3s ease,
+        transform 0.36s ease;
+}
+
+.accordion-item-content.open {
+    max-height: 520px;
+    opacity: 1;
+    padding-top: 1rem;
+    padding-bottom: 1.2rem;
+    transform: translateY(0);
+}
+
+.accordion-item-content.close {
+    max-height: 0;
+    opacity: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.accordion-item-content article p + p {
+    margin-top: 0.6rem;
+}
+
+/* Поисковые списки – стеклянные панели */
+
+.searchable-list {
+    margin: 1.8rem 0;
+    padding: 1.2rem 1.4rem 1.5rem;
+    border-radius: 1.35rem;
+    background: radial-gradient(
+            circle at 0% 0%,
+            rgba(138, 180, 255, 0.22),
+            transparent 60%
+        ),
+        radial-gradient(
+            circle at 120% 20%,
+            rgba(255, 185, 255, 0.16),
+            transparent 55%
+        ),
+        rgba(5, 9, 24, 0.98);
+    box-shadow: 0 20px 52px rgba(0, 0, 0, 0.98),
+        0 0 0 1px rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    position: relative;
+}
+
+/* Лейбл над поиском, без изменения разметки */
+
+.searchable-list::before {
+    content: "Search";
+    position: absolute;
+    top: 0.75rem;
+    left: 1.45rem;
+    font-size: 0.72rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: rgba(199, 210, 255, 0.8);
+    opacity: 0.85;
+}
+
+/* Поле поиска – неоновый pill */
+
+.searchable-list input {
+    width: 100%;
+    margin-top: 1.3rem;
+    padding: 0.82rem 1.1rem 0.82rem 1.1rem;
+    border-radius: 999px;
+    border: 1px solid rgba(135, 173, 255, 0.55);
+    background: radial-gradient(
+            circle at 0% 0%,
+            rgba(160, 196, 255, 0.24),
+            transparent 50%
+        ),
+        rgba(7, 10, 26, 0.98);
+    color: #f5f7ff;
+    font: inherit;
+    outline: none;
+    box-shadow: 0 0 0 1px rgba(115, 165, 255, 0.5),
+        0 12px 34px rgba(0, 0, 0, 0.96), 0 0 25px rgba(102, 163, 255, 0.7);
+    transition: box-shadow 0.25s ease, border-color 0.25s ease,
+        background 0.25s ease, transform 0.18s ease;
+}
+
+.searchable-list input::placeholder {
+    color: rgba(202, 215, 255, 0.75);
+}
+
+.searchable-list input:focus {
+    box-shadow: 0 0 0 1px rgba(170, 210, 255, 0.95),
+        0 0 42px rgba(140, 196, 255, 1), 0 18px 42px rgba(0, 0, 0, 1);
+    border-color: rgba(186, 224, 255, 1);
+    background: radial-gradient(
+            circle at 0% 0%,
+            rgba(176, 214, 255, 0.34),
+            transparent 55%
+        ),
+        rgba(5, 8, 20, 1);
+    transform: translateY(-1px);
+}
+
+/* Список внутри поиска */
+
+.searchable-list ul {
+    list-style: none;
+    margin: 1rem 0 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+/* Строки текста для debounce и карточки мест */
+
+.searchable-list ul li {
+    position: relative;
+    border-radius: 1rem;
+    padding: 0.75rem 0.95rem;
+    background: radial-gradient(
+            circle at 0% 0%,
+            rgba(118, 177, 255, 0.16),
+            transparent 60%
+        ),
+        linear-gradient(135deg, #101624, #151b2a);
+    color: #d3dcff;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    box-shadow: 0 14px 32px rgba(0, 0, 0, 0.9),
+        0 0 0 1px rgba(255, 255, 255, 0.04);
+    transition: transform 0.22s ease, box-shadow 0.22s ease,
+        background 0.22s ease, color 0.22s ease;
+    overflow: hidden;
+}
+
+.searchable-list ul li::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+        circle at 0% 0%,
+        rgba(161, 203, 255, 0.38),
+        transparent 55%
+    );
+    opacity: 0;
+    transition: opacity 0.25s ease;
+    pointer-events: none;
+}
+
+.searchable-list ul li:hover {
+    transform: translateY(-1px) translateZ(0);
+    box-shadow: 0 18px 44px rgba(0, 0, 0, 1),
+        0 0 0 1px rgba(151, 199, 255, 0.75);
+    color: #ffffff;
+}
+
+.searchable-list ul li:hover::before {
+    opacity: 0.4;
+}
+
+/* Карточка места – поверх общего стиля li */
+
+.place {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.75rem 0.35rem 0.75rem 0.3rem;
+    border-radius: 1rem;
+    margin: 0;
+    background: radial-gradient(
+            circle at 0% 0%,
+            rgba(129, 192, 255, 0.24),
+            transparent 55%
+        ),
+        linear-gradient(135deg, #0f1424, #131a2a);
+    box-shadow: 0 18px 42px rgba(0, 0, 0, 0.96),
+        0 0 0 1px rgba(255, 255, 255, 0.05);
+    transition: transform 0.22s ease, box-shadow 0.22s ease,
+        background 0.22s ease;
+}
+
+.place:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 22px 56px rgba(0, 0, 0, 1), 0 0 0 1px rgba(156, 206, 255, 0.9);
+}
+
+.place img {
+    width: 4.6rem;
+    height: 4.6rem;
+    border-radius: 1rem;
+    object-fit: cover;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.9),
+        0 0 0 1px rgba(255, 255, 255, 0.16);
+}
+
+.place h2 {
+    margin: 0 0 0.35rem;
+    font-size: 1.22rem;
+    color: #fff7c4;
+    letter-spacing: 0.025em;
+    text-shadow: 0 0 12px rgba(255, 248, 188, 0.6),
+        0 0 24px rgba(255, 230, 160, 0.8);
+}
+
+.place p {
+    margin: 0;
+    color: #c2c7de;
+    font-size: 0.93rem;
+}
+
+/* Адаптивность */
+
+@media (max-width: 768px) {
+    body {
+        padding: 2rem 1rem;
+    }
+
+    main {
+        gap: 2rem;
+    }
+
+    section {
+        padding: 1.45rem 1.3rem 1.8rem;
+    }
+
+    main > section > h2 {
+        font-size: 1.55rem;
+    }
+
+    .place {
+        align-items: flex-start;
+    }
+
+    .place img {
+        width: 3.9rem;
+        height: 3.9rem;
+    }
+}
