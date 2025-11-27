@@ -182,18 +182,18 @@ sequenceDiagram
 <div align="center">
 
 ```bash
-src/
-├── 📁 components/
-│   ├── 📁 Accordion/
-│   │   ├── 🟦 Accordion.jsx          # Main compound component
-│   │   ├── 🟦 AccordionItem.jsx      # Item context provider
-│   │   ├── 🟦 AccordionTitle.jsx     # Clickable title
-│   │   └── 🟦 AccordionContent.jsx   # Expandable content
-│   └── 📁 SearchableList/
-│       └── 🟦 SearchableList.jsx     # Render props + debounce
-├── 📁 assets/                        # Images and static files
-├── 🟦 App.jsx                        # Main application
-└── 🎨 index.css                      # Modern CSS styles
+src/<br/>
+├── 📁 components/<br/>
+│   ├── 📁 Accordion/<br/>
+│   │   ├── 🟦 Accordion.jsx          # Main compound component<br/>
+│   │   ├── 🟦 AccordionItem.jsx      # Item context provider<br/>
+│   │   ├── 🟦 AccordionTitle.jsx     # Clickable title<br/>
+│   │   └── 🟦 AccordionContent.jsx   # Expandable content<br/>
+│   └── 📁 SearchableList/<br/>
+│       └── 🟦 SearchableList.jsx     # Render props + debounce<br/>
+├── 📁 assets/                        # Images and static files<br/>
+├── 🟦 App.jsx                        # Main application<br/>
+└── 🎨 index.css                      # Modern CSS styles<br/>
 ```
 <div/>
 
