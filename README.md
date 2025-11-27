@@ -179,23 +179,21 @@ sequenceDiagram
 
 ### 🏗️ Project Structure
 
-<div align="center">
-
-```bash
-src/<br/>
-├── 📁 components/<br/>
-│   ├── 📁 Accordion/<br/>
-│   │   ├── 🟦 Accordion.jsx          # Main compound component<br/>
-│   │   ├── 🟦 AccordionItem.jsx      # Item context provider<br/>
-│   │   ├── 🟦 AccordionTitle.jsx     # Clickable title<br/>
-│   │   └── 🟦 AccordionContent.jsx   # Expandable content<br/>
-│   └── 📁 SearchableList/<br/>
-│       └── 🟦 SearchableList.jsx     # Render props + debounce<br/>
-├── 📁 assets/                        # Images and static files<br/>
-├── 🟦 App.jsx                        # Main application<br/>
-└── 🎨 index.css                      # Modern CSS styles<br/>
+```text
+src/
+├── 📁 components/
+│   ├── 📁 Accordion/
+│   │   ├── 🟦 Accordion.jsx          # Main compound component
+│   │   ├── 🟦 AccordionItem.jsx      # Item context provider
+│   │   ├── 🟦 AccordionTitle.jsx     # Clickable title
+│   │   └── 🟦 AccordionContent.jsx   # Expandable content
+│   └── 📁 SearchableList/
+│       └── 🟦 SearchableList.jsx     # Render props + debounce
+├── 📁 assets/                        # Images and static files
+├── 🟦 App.jsx                        # Main application
+└── 🎨 index.css                      # Modern glassmorphism styles
 ```
-<div/>
+
 
 ## 🔧 Technical Implementation Details
 
@@ -239,19 +237,19 @@ graph TB
 After studying this project, you'll understand:
 
 ### Compound Components
-- ✅ How to create implicit APIs with React Context
-- ✅ When to use compound components vs. other patterns
-- ✅ How to manage state sharing without prop drilling
+✅ How to create implicit APIs with React Context
+✅ When to use compound components vs. other patterns
+✅ How to manage state sharing without prop drilling
 
 ### Render Props
-- ✅ The power of inversion of control in React
-- ✅ How to create highly reusable components
-- ✅ Separation of data logic and presentation
+✅ The power of inversion of control in React
+✅ How to create highly reusable components
+✅ Separation of data logic and presentation
 
 ### Debounce
-- ✅ Performance optimization techniques
-- ✅ Event handling best practices
-- ✅ Real-world implementation patterns
+✅ Performance optimization techniques
+✅ Event handling best practices
+✅ Real-world implementation patterns
 
 ## 📚 Further Reading
 
