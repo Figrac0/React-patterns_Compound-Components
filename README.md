@@ -5,7 +5,7 @@ A practical demonstration project showcasing three essential React patterns thro
 ## 🎯 Patterns Demonstrated 
 
 ### 1. Compound Components Pattern
-### 2. Render Props Pattern  
+### 2. Render Props Pattern   
 ### 3. Debounce Implementation
 
 ---
