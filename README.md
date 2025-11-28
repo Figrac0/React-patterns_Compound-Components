@@ -2,7 +2,7 @@
 
 A practical demonstration project showcasing three essential React patterns through interactive, real-world examples. This project helps developers understand advanced React concepts with clean, commented code and modern UI design.
 
-## 🎯 Patterns Demonstrated
+## 🎯 Patterns Demonstrated 
 
 ### 1. Compound Components Pattern
 ### 2. Render Props Pattern  
